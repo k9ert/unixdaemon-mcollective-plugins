@@ -26,8 +26,9 @@ module MCollective
             if aug.match('/augeas/load/'+lens).length > 0
               aug.set('/augeas/load/'+lens+'/incl[last()+1]', path)
             else
-              aug.set('/augeas/load/'+lens+'/lens', lens+'.lns')
-              aug.set('/augeas/load/'+lens+'/incl', path)
+              lensCap = lens.slice(0..0).capitalize + lens.slice(1..-1)
+              aug.set('/augeas/load/'+lensCap+'/lens', lens+'.lns')
+              aug.set('/augeas/load/'+lensCap+'/incl', path)
             end
           end
           aug.load()
